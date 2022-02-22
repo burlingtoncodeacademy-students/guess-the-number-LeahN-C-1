@@ -23,12 +23,15 @@ async function whichGame() {
   //If humam chooses "c", go to compChooses function.
   if (gameChoice === "h") {
     //Computer repeats human's response.
-    console.log("You chose human! ");
+    console.log("\nYou chose human! ");
     humanChooses();
   } else if (gameChoice === "c") {
     //Computer repeats human's response.
-    console.log("You chose computer! ");
+    console.log("\nYou chose computer! ");
     compChooses();
+  } else {
+    console.log("\nI don't know how to " + gameChoice + ". Try again. ");
+    whichGame();
   }
 }
 
@@ -46,6 +49,10 @@ async function humanChooses() {
   max = await ask(
     "First, pick a number greater than 1 to be your maximum range. "
   );
+  if (max <= 1) {
+    console.log("\nYou must choose a number that is greater than 1. ");
+    humanChooses()
+  } 
   //Turn max into an integer.
   max = parseInt(max);
   //Computer asks human to choose a secret number.
@@ -149,6 +156,10 @@ async function compChooses() {
   maximum = await ask(
     "First, pick a number greater than 1 to be my maximum range. "
   );
+  if (maximum <= 1) {
+    console.log("\nYou must choose a number that is greater than 1. ");
+    compChooses()
+  } 
   //Turns max into integer.
   maximum = parseInt(maximum);
   //Computer chooses a number between the minimum and maximum.
